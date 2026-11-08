@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #090909;
+  color: #f5ead1;
+  font-family: 'Cairo', sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 25px 12px;
+  border-bottom: 1px solid #8e6b29;
+}
+
+.brand {
+  color: #d9b45e;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.subtitle,.muted {
+  color: #a99b7c;
+  font-size: 13px;
+}
+
+.welcome {
+  text-align: center;
+  padding: 65px 20px;
+  background: radial-gradient(ellipse at center,#302313 0%,#090909 72%);
+}
+
+.welcome span {
+  color: #d8b15a;
+}
+
+.welcome h1 {
+  font-size: 39px;
+  color: #e9c778;
+  margin: 16px 0;
+}
+
+.welcome p {
+  color: #c7bda7;
+}
+
+.gold-btn {
+  margin-top: 20px;
+  background: linear-gradient(120deg,#b58a38,#f1d58a,#a47724);
+  color: #171008;
+  border: 0;
+  padding: 13px 35px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 800;
+}
+
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #b58a38;
+  color: #120e08;
+  padding: 11px 0;
+  font-weight: 700;
+}
+
+.ticker span {
+  display: inline-block;
+  animation: move 18s linear infinite;
+}
+
+@keyframes move {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100vw); }
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+.cover {
+  width: 190px;
+  height: 265px;
+  padding: 20px;
+  text-align: center;
+  border: 2px solid #c39b48;
+  outline: 1px solid #76551e;
+  outline-offset: 5px;
+  background: radial-gradient(#3a2a12,#100d09 75%);
+  box-shadow: 0 10px 35px #000;
+}
+
+.cover-symbol {
+  color: #e6c16f;
+  font-size: 28px;
+}
+
+.cover h2 {
+  color: #e9c778;
+  font-size: 27px;
+  line-height: 1.5;
+}
+
+.cover p,.cover-bottom {
+  font-size: 12px;
+  color: #c4a35f;
+}
+
+.intro-text {
+  max-width: 300px;
+  line-height: 2;
+}
+
+.intro-text h2,.parts h2 {
+  color: #dfbd70;
+}
+
+.parts {
+  padding: 25px 16px 45px;
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
+}
+
+.part-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.part-card {
+  min-height: 110px;
+  background: linear-gradient(145deg,#201b12,#111);
+  border: 1px solid #755a2a;
+  border-radius: 10px;
+  color: #f3dfae;
+  font-family: inherit;
+  padding: 12px 6px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.number {
+  color: #e0b958;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.part-card small {
+  color: #9d8b68;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  border-top: 1px solid #59451f;
+  color: #aa9463;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.reader {
+  min-height: 100vh;
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.back {
+  color: #e5c77c;
+  background: transparent;
+  border: 1px solid #755a2a;
+  border-radius: 7px;
+  padding: 9px 15px;
+  font-family: inherit;
+}
+
+.reader-heading {
+  text-align: center;
+  padding: 35px 0;
+  color: #d8b76b;
+}
+
+.reader-heading h1 {
+  font-size: 27px;
+}
+
+.progress {
+  height: 5px;
+  background: #302719;
+  border-radius: 5px;
+  margin: 20px 0 10px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: #d4ac52;
+}
+
+article {
+  background: #15120d;
+  border: 1px solid #66502a;
+  padding: 25px;
+  border-radius: 12px;
+  min-height: 300px;
+  line-height: 2.3;
+}
+
+article h2 {
+  color: #e4c477;
+  text-align: center;
+}
+
+.story-text {
+  color: #e1d5bd;
+}
+
+.page-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 25px;
+}
+
+.page-controls button {
+  background: #b58a38;
+  color: #100c07;
+  border: 0;
+  border-radius: 7px;
+  padding: 10px;
+  font-family: inherit;
+}
+
+.page-controls button:disabled {
+  opacity: .35;
+}
+
+@media(max-width:380px) {
+  .part-grid { gap: 7px; }
+  .part-card { font-size: 12px; }
+}
