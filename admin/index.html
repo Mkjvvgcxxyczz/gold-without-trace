@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <title>لوحة تحكم المدير</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 18px;
+      background: #090909;
+      color: #e0bd55;
+      font-family: Arial, sans-serif;
+    }
+    main { max-width: 650px; margin: 25px auto; }
+    h1, h2 { color: #e0bd55; }
+    section {
+      background: #151515;
+      border: 1px solid #80651f;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 15px 0;
+    }
+    input, textarea, select, button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 7px;
+      font: inherit;
+    }
+    input, textarea, select {
+      background: #222;
+      border: 1px solid #80651f;
+      color: white;
+    }
+    input[type="checkbox"] {
+      display: inline-block;
+      width: auto;
+    }
+    input[type="color"] { height: 48px; }
+    button {
+      background: #d4af37;
+      color: #111;
+      border: 0;
+      font-weight: bold;
+    }
+    button.secondary {
+      background: #333;
+      color: white;
+      border: 1px solid #80651f;
+    }
+    label { display: block; margin-top: 12px; }
+    .note { color: #bbb; font-size: 13px; line-height: 1.7; }
+    [hidden] { display: none !important; }
+    nav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  </style>
+</head>
+<body>
+<main>
+  <section id="loginScreen">
+    <h1>لوحة المدير</h1>
+    <form id="loginForm">
+      <input name="username" placeholder="اسم المستخدم" required>
+      <input name="password" type="password" placeholder="كلمة المرور" required>
+      <button type="submit">دخول</button>
+    </form>
+    <p id="message" role="status"></p>
+  </section>
+
+  <div id="dashboard" hidden>
+    <h1>مركز التحكم</h1>
+
+    <nav>
+      <button type="button" data-section="stories">القصص</button>
+      <button type="button" data-section="design">التصميم والخلفية</button>
+      <button type="button" data-section="music">الموسيقى</button>
+      <button type="button" data-section="ads">الإعلانات</button>
+      <button type="button" data-section="users">المستخدمون</button>
+      <button type="button" data-section="general">الإعدادات العامة</button>
+    </nav>
+
+    <section id="stories" hidden>
+      <h2>إدارة القصص</h2>
+      <input id="storyTitle" placeholder="عنوان القصة">
+      <textarea id="storyContent" rows="6" placeholder="محتوى القصة"></textarea>
+      <button type="button" disabled>إضافة قصة - سيتم ربطها بالخادم لاحقاً</button>
+      <p class="note">إدارة القصص غير مفعّلة بعد؛ لن نحذف أو نغيّر محتوى القصص الحالي.</p>
+    </section>
+
+    <section id="design" hidden>
+      <h2>التصميم والخلفية</h2>
+      <label for="backgroundColor">لون الخلفية</label>
+      <input id="backgroundColor" type="color" value="#090909">
+
+      <label for="backgroundImage">اختيار صورة من الهاتف</label>
+      <input id="backgroundImage" type="file" accept="image/*">
+      <p class="note">اختر صورة من معرض الهاتف. سنربط رفعها وحفظها بالخادم في الخطوة التالية.</p>
+      <button id="saveSettings" type="button">حفظ الإعدادات</button>
+      <p id="settingsMessage" role="status"></p>
+    </section>
+
+    <section id="music" hidden>
+      <h2>الموسيقى</h2>
+      <label for="musicFile">اختيار ملف صوتي من الهاتف</label>
+      <input id="musicFile" type="file" accept="audio/*">
+      <label>
+        <input id="musicEnabled" type="checkbox">
+        تفعيل الموسيقى
+      </label>
+      <p class="note">رفع الملف وحفظه وتشغيله داخل التطبيق يحتاج إلى ربط الخادم، وسننفذه لاحقاً.</p>
+    </section>
+
+    <section id="ads" hidden>
+      <h2>الإعلانات</h2>
+      <p class="note">قسم الإعلانات جاهز للواجهة فقط. لم يتم ربط إضافة الإعلانات أو عرضها بعد.</p>
+    </section>
+
+    <section id="users" hidden>
+      <h2>المستخدمون</h2>
+      <p class="note">قسم إدارة المستخدمين غير مفعّل حتى نبني نظام مستخدمين آمناً.</p>
+    </section>
+
+    <section id="general" hidden>
+      <h2>الإعدادات العامة</h2>
+      <input id="appName" placeholder="اسم التطبيق">
+      <p class="note">سيتم ربط إعدادات الاسم والشعار بالخادم لاحقاً.</p>
+    </section>
+
+    <button type="button" id="logoutButton" class="secondary">تسجيل الخروج</button>
+  </div>
+</main>
+
+<script type="module" src="./admin.js"></script>
+</body>
+</html>
+

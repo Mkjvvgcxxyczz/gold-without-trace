@@ -412,3 +412,74 @@ function renderPage() {
 }
 
 renderHome()
+
+async function loadAdminSettings() {
+  try {
+    const response = await fetch("/api/settings");
+    if (!response.ok) return;
+
+    const settings = await response.json();
+
+    document.documentElement.style.setProperty(
+      "--app-background",
+      settings.backgroundColor || "#090909"
+    );
+
+    document.body.style.backgroundColor =
+      settings.backgroundColor || "#090909";
+
+    if (settings.backgroundImage) {
+      document.body.style.backgroundImage =
+        `url("${settings.backgroundImage}")`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundAttachment = "fixed";
+    }
+  } catch (error) {
+    console.error("تعذر تحميل إعدادات المدير:", error);
+  }
+}
+
+loadAdminSettings();
+
+let adminMusicPlayer = null;
+
+async function loadAdminMusic() {
+  try {
+    const response = await fetch("/api/settings");
+    if (!response.ok) return;
+
+    const settings = await response.json();
+
+    if (!adminMusicPlayer) {
+      adminMusicPlayer = document.createElement("audio");
+      adminMusicPlayer.id = "adminMusicPlayer";
+      adminMusicPlayer.loop = true;
+      adminMusicPlayer.preload = "none";
+      document.body.appendChild(adminMusicPlayer);
+    }
+
+    if (settings.musicEnabled && settings.musicUrl) {
+      if (adminMusicPlayer.src !== new URL(settings.musicUrl, location.href).href) {
+        adminMusicPlayer.src = settings.musicUrl;
+      }
+
+      adminMusicPlayer.play().catch(() => {
+        console.log("اضغط داخل التطبيق لتشغيل الموسيقى");
+      });
+    } else {
+      adminMusicPlayer.pause();
+      adminMusicPlayer.removeAttribute("src");
+    }
+  } catch (error) {
+    console.error("تعذر تحميل الموسيقى:", error);
+  }
+}
+
+document.addEventListener("click", () => {
+  if (adminMusicPlayer && adminMusicPlayer.paused && adminMusicPlayer.src) {
+    adminMusicPlayer.play().catch(() => {});
+  }
+});
+
+loadAdminMusic();
